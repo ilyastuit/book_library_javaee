@@ -1,6 +1,5 @@
-
-<%@page import="ru.javabegin.training.web.beans.Author"%>
-<%@page import="ru.javabegin.training.web.beans.AuthorList"%>
+<%@ page import="ru.bookshop.training.web.beans.AuthorList" %>
+<%@ page import="ru.bookshop.training.web.beans.Author" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
