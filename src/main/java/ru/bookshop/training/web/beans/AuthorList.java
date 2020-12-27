@@ -7,14 +7,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class AuthorList {
 
-    private ArrayList<Author> authorList = new ArrayList<>();
+    private List<Author> authorList = new ArrayList<>();
 
-    private ArrayList<Author> getAuthors() {
+    private List<Author> getAuthors() {
         Statement stmt = null;
         ResultSet rs = null;
         Connection conn = null;
@@ -22,7 +25,7 @@ public class AuthorList {
             conn = Database.getConnection();
 
             stmt = conn.createStatement();
-            rs = stmt.executeQuery("select * from author");
+            rs = stmt.executeQuery("SELECT * FROM author ORDER BY fio ASC");
             while (rs.next()) {
                 Author author = new Author();
                 author.setName(rs.getString("fio"));
@@ -41,10 +44,13 @@ public class AuthorList {
             }
         }
 
-        return authorList;
+        return authorList
+                .stream()
+                .sorted(Comparator.comparing(Author::getName))
+                .collect(Collectors.toList());
     }
 
-    public ArrayList<Author> getAuthorList() {
+    public List<Author> getAuthorList() {
         if (!authorList.isEmpty()) {
             return authorList;
         } else {
