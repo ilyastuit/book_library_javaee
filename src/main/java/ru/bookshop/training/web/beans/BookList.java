@@ -36,4 +36,12 @@ public class BookList {
 
         return bookList;
     }
+
+    public ArrayList<Book> getBookList() {
+        if (!bookList.isEmpty()) {
+            return bookList;
+        } else {
+            return getBooks();
+        }
+    }
 }
