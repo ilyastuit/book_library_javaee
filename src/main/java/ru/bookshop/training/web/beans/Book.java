@@ -1,30 +1,44 @@
 package ru.bookshop.training.web.beans;
 
+import java.awt.Image;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Book {
+public class Book implements Serializable{
+
+    private long id;
     private String name;
+    private byte[] content;
     private int pageCount;
     private String isbn;
-    private Date publishYear;
+    private String genre;
+    private String author;
+    private Date publishDate;
+    private String publisher;
+    private Image image;
 
-    public Book() {
-
+    public long getId() {
+        return id;
     }
 
-    public Book(String name, int pageCount, String isbn, Date publishYear) {
-        this.name = name;
-        this.pageCount = pageCount;
-        this.isbn = isbn;
-        this.publishYear = publishYear;
+    public void setId(long id) {
+        this.id = id;
     }
-
+   
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public byte[] getContent() {
+        return content;
+    }
+
+    public void setContent(byte[] content) {
+        this.content = content;
     }
 
     public int getPageCount() {
@@ -43,11 +57,43 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public Date getPublishYear() {
-        return publishYear;
+    public String getGenre() {
+        return genre;
     }
 
-    public void setPublishYear(Date publishYear) {
-        this.publishYear = publishYear;
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public Date getPublishDate() {
+        return publishDate;
+    }
+
+    public void setPublishDate(Date publishDate) {
+        this.publishDate = publishDate;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 }

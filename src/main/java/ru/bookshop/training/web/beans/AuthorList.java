@@ -7,17 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 public class AuthorList {
 
-    private List<Author> authorList = new ArrayList<>();
+    private ArrayList<Author> authorList = new ArrayList<Author>();
 
-    private List<Author> getAuthors() {
+    private ArrayList<Author> getAuthors() {
         Statement stmt = null;
         ResultSet rs = null;
         Connection conn = null;
@@ -25,31 +22,30 @@ public class AuthorList {
             conn = Database.getConnection();
 
             stmt = conn.createStatement();
-            rs = stmt.executeQuery("SELECT * FROM author ORDER BY fio ASC");
+            rs = stmt.executeQuery("select * from author order by fio");
             while (rs.next()) {
                 Author author = new Author();
+                author.setId(rs.getLong("id"));
                 author.setName(rs.getString("fio"));
                 authorList.add(author);
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(AuthorList.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+            Logger.getLogger(AuthorList.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
-                if (stmt != null) stmt.close();
-                if (rs != null) rs.close();
+                if (stmt!=null) stmt.close();
+                if (rs!=null)rs.close();
+                if (conn!=null)conn.close();
             } catch (SQLException ex) {
-                Logger.getLogger(AuthorList.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+                Logger.getLogger(AuthorList.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
-        return authorList
-                .stream()
-                .sorted(Comparator.comparing(Author::getName))
-                .collect(Collectors.toList());
+        return authorList;
     }
 
-    public List<Author> getAuthorList() {
+    public ArrayList<Author> getAuthorList() {
         if (!authorList.isEmpty()) {
             return authorList;
         } else {
