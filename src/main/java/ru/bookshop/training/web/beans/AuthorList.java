@@ -38,7 +38,6 @@ public class AuthorList {
             try {
                 if (stmt != null) stmt.close();
                 if (rs != null) rs.close();
-                if (conn != null) conn.close();
             } catch (SQLException ex) {
                 Logger.getLogger(AuthorList.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
             }

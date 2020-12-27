@@ -16,8 +16,6 @@
 
 
     <div class="header">
-        <img alt="Место для логотипа" name="logo" width="100%" height="90"/>
-
         <form class="search_form" name="search_form" method="POST">
             <img src="../images/search.jpg"/>
             <input type="text" name="search_String" value="" size="100"/>
@@ -33,7 +31,7 @@
     <div class="sidebar1">
         <h4>Список авторов:</h4>
         <ul class="nav">
-            <c:forEach items="${authorList}" var="item">
+            <c:forEach items="${authorList.authorList}" var="item">
                 <li><a href="#">${item.name}</a></li>
             </c:forEach>
         </ul>
